@@ -78,7 +78,6 @@ class _CountryListViewState extends State<CountryListView> {
     _searchController = TextEditingController();
 
     _countryList = _countryService.getAll();
-
     _countryList = countryCodes.map((country) => Country.from(json: country)).toList();
 
     //Remove duplicates country if not use phone code
@@ -107,8 +106,8 @@ class _CountryListViewState extends State<CountryListView> {
     if (widget.showWorldWide) {
       _filteredList.add(Country.worldWide);
     }
-    _filteredList.addAll(_countryList);
 
+    _filteredList.addAll(_countryList);
     _searchAutofocus = widget.searchAutofocus;
   }
 
@@ -119,7 +118,7 @@ class _CountryListViewState extends State<CountryListView> {
     return Column(
       children: <Widget>[
         const SizedBox(height: 12),
-        if (widget.showSearch)
+        if (widget.showSearch) ...{
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             child: TextField(
@@ -140,39 +139,38 @@ class _CountryListViewState extends State<CountryListView> {
               onChanged: _filterSearchResults,
             ),
           ),
-        Expanded(
-          child: ListView(
-            children: [
-              if (_favoriteList != null) ...[
-                ..._favoriteList!.map<Widget>(_listRow),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Divider(thickness: 1),
-                ),
-              ],
-              ..._filteredList.map<Widget>(_listRow),
-              SizedBox(
-                height: 420,
-                child: Visibility(
-                  visible: _filteredList.isEmpty,
-                  child: const Center(
-                    child: Text(
-                      'Data is not available',
-                      style: TextStyle(fontSize: 20),
-                    ),
+        },
+        if (_filteredList.isNotEmpty) ...{
+          Expanded(
+            child: ListView(
+              children: [
+                if (_favoriteList != null) ...{
+                  ..._favoriteList!.map<Widget>(_listRow),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Divider(thickness: 1),
                   ),
-                ),
-              ),
-            ],
+                },
+                ..._filteredList.map<Widget>(_listRow),
+              ],
+            ),
           ),
-        ),
+        } else ...{
+          const Expanded(
+            child: Center(
+              child: Text(
+                'Data is not available',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ),
+        },
       ],
     );
   }
 
   Widget _listRow(Country country) {
     final textStyle = widget.countryListTheme?.textStyle ?? _defaultTextStyle;
-
     final isRtl = Directionality.of(context) == TextDirection.rtl;
 
     return Material(
@@ -188,25 +186,22 @@ class _CountryListViewState extends State<CountryListView> {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: Row(
-            children: <Widget>[
-              Row(
-                children: [
-                  const SizedBox(width: 20),
-                  _flagWidget(country),
-                  if (widget.showPhoneCode && !country.iswWorldWide) ...[
-                    const SizedBox(width: 15),
-                    SizedBox(
-                      width: 60,
-                      child: Text(
-                        '${isRtl ? '' : '+'}${country.phoneCode}${isRtl ? '+' : ''}',
-                        style: textStyle,
-                      ),
-                    ),
-                    const SizedBox(width: 5),
-                  ] else
-                    const SizedBox(width: 15),
-                ],
-              ),
+            children: [
+              const SizedBox(width: 20),
+              _flagWidget(country),
+              if (widget.showPhoneCode && !country.iswWorldWide) ...{
+                const SizedBox(width: 15),
+                SizedBox(
+                  width: 60,
+                  child: Text(
+                    '${isRtl ? '' : '+'}${country.phoneCode}${isRtl ? '+' : ''}',
+                    style: textStyle,
+                  ),
+                ),
+                const SizedBox(width: 5),
+              } else ...{
+                const SizedBox(width: 15),
+              },
               Expanded(
                 child: Text(
                   CountryLocalizations.of(context)?.countryName(countryCode: country.countryCode)?.replaceAll(RegExp(r'\s+'), ' ') ?? country.name,

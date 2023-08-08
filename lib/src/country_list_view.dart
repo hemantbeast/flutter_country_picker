@@ -156,11 +156,11 @@ class _CountryListViewState extends State<CountryListView> {
             ),
           ),
         } else ...{
-          const Expanded(
+          Expanded(
             child: Center(
               child: Text(
-                'Data is not available',
-                style: TextStyle(fontSize: 20),
+                widget.countryListTheme?.emptyText ?? 'Data is not available',
+                style: widget.countryListTheme?.emptyTextStyle ?? _defaultTextStyle,
               ),
             ),
           ),

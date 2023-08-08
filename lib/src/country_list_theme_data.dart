@@ -12,6 +12,8 @@ class CountryListThemeData {
     this.bottomSheetHeight,
     this.padding,
     this.margin,
+    this.emptyText,
+    this.emptyTextStyle,
   });
 
   /// The country bottom sheet's background color.
@@ -54,4 +56,10 @@ class CountryListThemeData {
 
   /// the margin of the bottom sheet
   final EdgeInsets? margin;
+
+  /// empty text to show
+  final String? emptyText;
+
+  /// empty text style
+  final TextStyle? emptyTextStyle;
 }

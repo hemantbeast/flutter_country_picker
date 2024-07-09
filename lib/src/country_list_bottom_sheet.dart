@@ -18,7 +18,6 @@ void showCountryListBottomSheet({
   bool showSearch = true,
   bool useSafeArea = false,
   String? titleText,
-  String? hintText,
 }) {
   showModalBottomSheet<void>(
     context: context,
@@ -37,7 +36,6 @@ void showCountryListBottomSheet({
       showWorldWide,
       showSearch,
       titleText,
-      hintText,
     ),
   ).whenComplete(() {
     if (onClosed != null) onClosed();
@@ -56,7 +54,6 @@ Widget _builder(
   bool showWorldWide,
   bool showSearch,
   String? titleText,
-  String? hintText,
 ) {
   final device = MediaQuery.of(context).size.height;
   final statusBarHeight = MediaQuery.of(context).padding.top;
@@ -71,11 +68,7 @@ Widget _builder(
     }
   }
 
-  final borderRadius = countryListTheme?.borderRadius ??
-      const BorderRadius.only(
-        topLeft: Radius.circular(40),
-        topRight: Radius.circular(40),
-      );
+  final borderRadius = countryListTheme?.borderRadius ?? const BorderRadius.vertical(top: Radius.circular(40));
 
   return Container(
     height: height,
@@ -96,7 +89,6 @@ Widget _builder(
       showWorldWide: showWorldWide,
       showSearch: showSearch,
       titleText: titleText,
-      hintText: hintText,
     ),
   );
 }

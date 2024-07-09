@@ -19,7 +19,6 @@ class CountryListView extends StatefulWidget {
     this.showWorldWide = false,
     this.showSearch = true,
     this.titleText,
-    this.hintText,
   })  : assert(
           exclude == null || countryFilter == null,
           'Cannot provide both exclude and countryFilter',
@@ -61,9 +60,8 @@ class CountryListView extends StatefulWidget {
   /// An optional argument for hiding the search bar
   final bool showSearch;
 
+  /// Set title
   final String? titleText;
-
-  final String? hintText;
 
   @override
   State<CountryListView> createState() => _CountryListViewState();
@@ -119,15 +117,19 @@ class _CountryListViewState extends State<CountryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final searchLabel = widget.hintText ?? CountryLocalizations.of(context)?.countryName(countryCode: 'search') ?? 'Search';
+    final searchLabel = CountryLocalizations.of(context)?.countryName(countryCode: 'search') ?? 'Search';
 
     return Column(
       children: <Widget>[
         const SizedBox(height: 12),
         if (widget.titleText?.isNotEmpty ?? false) ...{
-          Text(
-            widget.titleText ?? '',
-            style: widget.countryListTheme?.titleTextStyle ?? _defaultTextStyle,
+          Container(
+            alignment: widget.countryListTheme?.titleAlignment,
+            padding: const EdgeInsets.fromLTRB(14, 10, 14, 0),
+            child: Text(
+              widget.titleText ?? '',
+              style: widget.countryListTheme?.titleTextStyle ?? _defaultTextStyle,
+            ),
           ),
         },
         if (widget.showSearch) ...{
@@ -219,7 +221,7 @@ class _CountryListViewState extends State<CountryListView> {
                   CountryLocalizations.of(context)?.countryName(countryCode: country.countryCode)?.replaceAll(RegExp(r'\s+'), ' ') ?? country.name,
                   style: textStyle,
                 ),
-              )
+              ),
             ],
           ),
         ),

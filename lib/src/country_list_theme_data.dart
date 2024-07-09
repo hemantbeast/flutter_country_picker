@@ -15,6 +15,7 @@ class CountryListThemeData {
     this.emptyText,
     this.emptyTextStyle,
     this.titleTextStyle,
+    this.titleAlignment = Alignment.centerLeft,
   });
 
   /// The country bottom sheet's background color.
@@ -64,6 +65,9 @@ class CountryListThemeData {
   /// empty text style
   final TextStyle? emptyTextStyle;
 
-  /// empty text style
+  /// title text style
   final TextStyle? titleTextStyle;
+
+  /// title alignment
+  final Alignment titleAlignment;
 }

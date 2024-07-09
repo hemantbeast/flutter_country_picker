@@ -119,7 +119,7 @@ class _CountryListViewState extends State<CountryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final searchLabel = CountryLocalizations.of(context)?.countryName(countryCode: 'search') ?? widget.hintText ?? 'Search';
+    final searchLabel = widget.hintText ?? CountryLocalizations.of(context)?.countryName(countryCode: 'search') ?? 'Search';
 
     return Column(
       children: <Widget>[

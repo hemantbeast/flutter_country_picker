@@ -18,6 +18,8 @@ class CountryListView extends StatefulWidget {
     this.searchAutofocus = false,
     this.showWorldWide = false,
     this.showSearch = true,
+    this.titleText,
+    this.hintText,
   })  : assert(
           exclude == null || countryFilter == null,
           'Cannot provide both exclude and countryFilter',
@@ -58,6 +60,10 @@ class CountryListView extends StatefulWidget {
 
   /// An optional argument for hiding the search bar
   final bool showSearch;
+
+  final String? titleText;
+
+  final String? hintText;
 
   @override
   State<CountryListView> createState() => _CountryListViewState();
@@ -113,11 +119,17 @@ class _CountryListViewState extends State<CountryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final searchLabel = CountryLocalizations.of(context)?.countryName(countryCode: 'search') ?? 'Search';
+    final searchLabel = CountryLocalizations.of(context)?.countryName(countryCode: 'search') ?? widget.hintText ?? 'Search';
 
     return Column(
       children: <Widget>[
         const SizedBox(height: 12),
+        if (widget.titleText?.isNotEmpty ?? false) ...{
+          Text(
+            widget.titleText ?? '',
+            style: widget.countryListTheme?.titleTextStyle ?? _defaultTextStyle,
+          ),
+        },
         if (widget.showSearch) ...{
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),

@@ -14,6 +14,7 @@ class CountryListThemeData {
     this.margin,
     this.emptyText,
     this.emptyTextStyle,
+    this.titleTextStyle,
   });
 
   /// The country bottom sheet's background color.
@@ -62,4 +63,7 @@ class CountryListThemeData {
 
   /// empty text style
   final TextStyle? emptyTextStyle;
+
+  /// empty text style
+  final TextStyle? titleTextStyle;
 }

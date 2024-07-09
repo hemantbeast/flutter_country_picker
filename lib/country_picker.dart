@@ -52,6 +52,8 @@ void showCountryPicker({
   bool showWorldWide = false,
   bool showSearch = true,
   bool useSafeArea = false,
+  String? titleText,
+  String? hintText,
 }) {
   assert(
     exclude == null || countryFilter == null,
@@ -70,5 +72,7 @@ void showCountryPicker({
     showWorldWide: showWorldWide,
     showSearch: showSearch,
     useSafeArea: useSafeArea,
+    titleText: titleText,
+    hintText: hintText,
   );
 }

@@ -17,6 +17,7 @@ void showCountryListBottomSheet({
   bool showWorldWide = false,
   bool showSearch = true,
   bool useSafeArea = false,
+  bool isDismissible = true,
   String? titleText,
 }) {
   showModalBottomSheet<void>(
@@ -24,6 +25,8 @@ void showCountryListBottomSheet({
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     useSafeArea: useSafeArea,
+    isDismissible: isDismissible,
+    enableDrag: isDismissible,
     builder: (context) => _builder(
       context,
       onSelect,

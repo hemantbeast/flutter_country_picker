@@ -52,6 +52,7 @@ void showCountryPicker({
   bool showWorldWide = false,
   bool showSearch = true,
   bool useSafeArea = false,
+  bool isDismissible = true,
   String? titleText,
 }) {
   assert(
@@ -72,5 +73,6 @@ void showCountryPicker({
     showSearch: showSearch,
     useSafeArea: useSafeArea,
     titleText: titleText,
+    isDismissible: isDismissible,
   );
 }

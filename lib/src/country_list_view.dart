@@ -146,7 +146,7 @@ class _CountryListViewState extends State<CountryListView> {
                     prefixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                        color: const Color(0xFF8C98A8).withValues(alpha: 0.2),
                       ),
                     ),
                   ),
